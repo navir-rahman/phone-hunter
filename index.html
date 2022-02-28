@@ -11,6 +11,12 @@
     
 </head>
 <body>
+    <!-- spiner -->
+    <div id="spiner" class="text-center" style="display: none;width:100vw;height: 100vh;z-index: 1000;position: absolute;background: #fdfdfde8;">
+        <div class="spinner-border" style="top: 50%;position: absolute;"role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     <!-- header  -->
     <header>
         <!-- search -->
@@ -38,7 +44,9 @@
         <section>
             <div id="search_box" class="row row-cols-1 row-cols-md-3 g-4">
 
+                
             </div>
+            <div onclick='showallsearh()' id="showallbtn" class="btn btn-primary">show all</div>
         </section>
     </main>
     <!-- bootstrap -->
