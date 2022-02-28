@@ -15,9 +15,9 @@ const searchMobile =() => {
 }
  // show all result
 const show_result =(data)=>{
-    //console.log(data.data)
-    
     const search_box= document.getElementById('search_box');
+if (data) {
+    //console.log(data.data)
     search_box.textContent="";
     for (const phone of data.data) {
         cnl(phone)
@@ -25,7 +25,6 @@ const show_result =(data)=>{
         //div.setAttribute('id',phone.slug);
         //div.setAttribute('onclick',"single_product(this.id)");
         div.classList.add("col");
-        
         div.innerHTML= `             
         <div class="card">
         <img width="400px" src="${phone.image}" class="card-img-top" alt="...">
@@ -39,6 +38,9 @@ const show_result =(data)=>{
     `;
     search_box.appendChild(div);
     }
+}else{
+    search_box.innerText="No Result Found"
+}
 }
 
 
@@ -59,24 +61,39 @@ function single_product (id){
 
      const releaseDate=phone.releaseDate || "No releaseDate found";
 
-
-
-
      single_result.innerHTML=`
      <img src="${phone.image}" class="card-img-top" alt="...">
      <div class="card-body">
        <h5 class="card-title">${phone.name}</h5>
        <h5 class="card-title">Released: ${releaseDate}</h5>
-       <p class="card-text">
-       ${
-        Object.entries(phone.mainFeatures).forEach(([key, value]) => key)
-       }
-       </p>
-       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-       
-     </div>
+       <p id='mainFeatures' class="card-text"></p>
+       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>     
+     </div>  
      `;
 
 
+     const mnf=document.getElementById("mainFeatures");
+if (phone.mainFeatures) {
+     Object.entries(phone.mainFeatures).forEach(([key, value]) => {
+        //console.log(key, value) 
+        const feature= document.createElement("p");
+        feature.innerHTML =`${key} : ${value}`;
+        //console.log(feature)
+        //cnl(feature)
+        
+        mnf.appendChild(feature);
+    })
+}
+    if (phone.others) {
+    Object.entries(phone.others).forEach(([key, value]) => {
+        //console.log(key, value) 
+        const feature= document.createElement("p");
+        feature.innerHTML =`${key} : ${value}`;
+        //console.log(feature)
+        //cnl(feature)
+        
+        mnf.appendChild(feature);
+    })
+}
 
  }
