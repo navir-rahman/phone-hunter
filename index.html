@@ -20,8 +20,8 @@
     <!-- header  -->
     <header>
         <!-- search -->
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light mb-5">
+            <div class=" container-md">
                 <div class="d-block m-auto">
                     <h1>Welcome to mobile bazar</h1>
                 </div>
@@ -33,12 +33,19 @@
           </nav>
     </header>
     <!-- main  -->
-    <main>
+    <main class="container-md">
+
+      <section class="mb-5">
+        <div class="d-flex m-auto">
+          <input id="search_word" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button onclick="searchMobile()" class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </section>
         <!-- single search result  -->
         <section>
-            <div class="card mb-3" id="single_result">
-
-              </div>
+          <div id="single_result" data-bs-spy="scroll" data-bs-target="#search_box" class="row g-0">
+            
+          </div>
         </section>
         <!-- seacch result -->
         <section>
@@ -46,7 +53,7 @@
 
                 
             </div>
-            <div onclick='showallsearh()' id="showallbtn" class="btn btn-primary">show all</div>
+            <div onclick='showallsearh()' id="showallbtn" class="btn btn-primary d-none">show all</div>
         </section>
     </main>
     <!-- bootstrap -->

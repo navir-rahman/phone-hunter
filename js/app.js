@@ -40,27 +40,35 @@ if (data.data.length > 0) {
         const div= document.createElement("div");
         //div.setAttribute('id','');
         if (index >= 20) {
-            div.style.display="none"
+            div.style.display="none";
+            let i=0;
+            if(i<1){
+            document.getElementById('showallbtn').classList.remove('d-none')
+                i++
+            }
         }
         div.classList.add("col","show");
         div.innerHTML= `             
-        <div class="card">
-        <img width="400px" src="${element.image}" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h4 class="card-title">${element.phone_name}</h4>
-        <h5 class="card-title">Brand: ${element.brand}</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div onclick='single_product("${element.slug}")' class="btn btn-primary">Button</div>
-        </div>
+        <div class="card m-4">
+            <img style="width: 300px;" src="${element.image}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h4 class="card-title">${element.phone_name}</h4>
+            <h5 class="card-title">Brand: ${element.brand}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <a herf="#single_result>" <button  onclick='single_product("${element.slug}")' class="btn btn-primary">show details</button> </a>
+            </div>
         </div>        
     `;
     search_box.appendChild(div);
     }
  
     spiner.style.display="none";
+
 }else{
     spiner.style.display="none";
-    search_box.innerText="No Result Found"
+    search_box.innerText="No Result Found";
+
+
 }
 
 
@@ -80,18 +88,29 @@ function single_product (id){
      const phone= data.data;
      console.log(phone);
 
-    
-
      const releaseDate=phone.releaseDate || "No releaseDate found";
-
+     single_result.classList.add('row')
      single_result.innerHTML=`
-     <img src="${phone.image}" class="card-img-top" alt="...">
-     <div class="card-body">
+     <!-- div class="col">
+       <img src="${phone.image}" class="card-img-top" alt="...">
+     </div>
+     <div class="card-body col">
        <h5 class="card-title">${phone.name}</h5>
        <h5 class="card-title">Released: ${releaseDate}</h5>
        <p id='mainFeatures' class="card-text"></p>
        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>     
-     </div>  
+     </div -->  
+
+    <div class="col-md-6">
+        <img width="400px" src="${phone.image}" class="img-fluid rounded-start" alt="${phone.image}">
+    </div>
+    <div class="col-md-6">
+        <div class="card-body">
+        <h5 class="card-title">${phone.name}</h5>
+        <p class="card-text">${releaseDate}</p>
+        <p id="mainFeatures" class="card-text"></p>
+        </div>
+    </div>
      `;
 
 
