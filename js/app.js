@@ -54,7 +54,6 @@ if (data.data.length > 0) {
             <div class="card-body">
             <h4 class="card-title">${element.phone_name}</h4>
             <h5 class="card-title">Brand: ${element.brand}</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <a herf="#single_result>" <button  onclick='single_product("${element.slug}")' class="btn btn-primary">show details</button> </a>
             </div>
         </div>        
