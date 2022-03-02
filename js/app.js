@@ -1,9 +1,3 @@
-function cnl(){
-    for (const arg of arguments) {
-        console.log(arg)
-    }
-}
-
 //showallsearh
 const showallsearh= () =>{
     const show = document.getElementsByClassName('show');
@@ -31,14 +25,12 @@ const searchMobile =() => {
 const show_result =(data)=>{
     const search_box= document.getElementById('search_box');
 if (data.data.length > 0) {
-    console.log(data.data)
     search_box.textContent="";
     single_result.textContent="";
 
     for (let index = 0; index < data.data.length; index++) {
         const element = data.data[index];
         const div= document.createElement("div");
-        //div.setAttribute('id','');
         if (index >= 20) {
             div.style.display="none";
             let i=0;
@@ -58,21 +50,19 @@ if (data.data.length > 0) {
             </div>
         </div>        
     `;
+    search_box.style.color="";
     search_box.appendChild(div);
     }
- 
     spiner.style.display="none";
-
 }else{
     spiner.style.display="none";
-    search_box.innerText="No Result Found";
-
-
+    search_box.style.fontSize="24px";
+    search_box.style.color="red";
+    search_box.style.margin="auto";
+    search_box.innerText="No Result Found. Please type some other name.";
 }
 
-
 }
-
 
 //single search
 
@@ -85,20 +75,9 @@ function single_product (id){
 //show_single_result
  const show_single_result = (data)=>{
      const phone= data.data;
-     console.log(phone);
-
      const releaseDate=phone.releaseDate || "No releaseDate found";
      single_result.classList.add('row')
      single_result.innerHTML=`
-     <!-- div class="col">
-       <img src="${phone.image}" class="card-img-top" alt="...">
-     </div>
-     <div class="card-body col">
-       <h5 class="card-title">${phone.name}</h5>
-       <h5 class="card-title">Released: ${releaseDate}</h5>
-       <p id='mainFeatures' class="card-text"></p>
-       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>     
-     </div -->  
 
     <div class="col-md-6">
         <img width="400px" src="${phone.image}" class="img-fluid rounded-start" alt="${phone.image}">
@@ -116,23 +95,15 @@ function single_product (id){
      const mnf=document.getElementById("mainFeatures");
 if (phone.mainFeatures) {
      Object.entries(phone.mainFeatures).forEach(([key, value]) => {
-        //console.log(key, value) 
         const feature= document.createElement("p");
         feature.innerHTML =`${key} : ${value}`;
-        //console.log(feature)
-        //cnl(feature)
-        
         mnf.appendChild(feature);
     })
 }
     if (phone.others) {
     Object.entries(phone.others).forEach(([key, value]) => {
-        //console.log(key, value) 
         const feature= document.createElement("p");
-        feature.innerHTML =`${key} : ${value}`;
-        //console.log(feature)
-        //cnl(feature)
-        
+        feature.innerHTML =`${key} : ${value}`;    
         mnf.appendChild(feature);
     })
 }
